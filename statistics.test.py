@@ -22,7 +22,7 @@ class StatsTest(unittest.TestCase):
     s.quit()
 
   def test_raise_alerts_when_max_above_threshold(self):
-    emailAlert = EmailAlert()
+    emailAlert = EmailAlert(from_who, to, msg)
     ledAlert = LEDAlert()
     maxThreshold = 10.5
     statsAlerter = StatsAlerter(maxThreshold, [emailAlert, ledAlert])
