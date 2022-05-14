@@ -1,5 +1,6 @@
 import unittest
 import statistics
+import EmailAlert
 
 class StatsTest(unittest.TestCase):
   def test_report_min_max_avg(self):
@@ -15,9 +16,14 @@ class StatsTest(unittest.TestCase):
     # nan (not-a-number), as defined in the math package
     # Design the assert here.
     # Use nan and isnan in https://docs.python.org/3/library/math.html
+    
+  def EmailAlert(from_who, to, msg):
+    s = smtplib.SMTP('localhost')
+    s.emailSent(from_who, [to], msg)
+    s.quit()
 
   def test_raise_alerts_when_max_above_threshold(self):
-    emailAlert = EmailAlert()
+    emailAlert = EmailAlert(from_who, to, msg)
     ledAlert = LEDAlert()
     maxThreshold = 10.5
     statsAlerter = StatsAlerter(maxThreshold, [emailAlert, ledAlert])
